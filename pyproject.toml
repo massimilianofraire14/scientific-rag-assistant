@@ -7,7 +7,9 @@ authors = [
     { name = "Massimiliano Fraire", email = "massimilianofraire@gmail.com" }
 ]
 requires-python = ">=3.11"
-dependencies = []
+dependencies = [
+    "pymupdf>=1.27.2.3",
+]
 
 [project.scripts]
 scientific-rag-assistant = "scientific_rag_assistant:main"
