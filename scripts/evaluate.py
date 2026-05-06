@@ -36,7 +36,7 @@ def main() -> None:
         hit = hit_at_k(
             retrieved_results=results,
             expected_paper_id=example["expected_paper_id"],
-            expected_page_number=example["expected_page_number"],
+            expected_page_number=example["expected_page_numbers"],
         )
 
         hits.append(hit)
@@ -46,7 +46,7 @@ def main() -> None:
         print(f"Question: {example['question']}")
         print(
             f"Expected: {example['expected_paper_id']}, "
-            f"page {example['expected_page_number']}"
+            f"pages {example['expected_page_numbers']}"
         )
         print(f"Result: {status}")
         print("Top retrieved pages:")
