@@ -1,8 +1,10 @@
-import json 
+import json
 from pathlib import Path
+
 import numpy as np
 
 from scientific_rag.embeddings.local_embedder import LocalEmbedder
+
 
 class SimpleRetriever:
     """Retrieve relevant chunks using cosine similarity over local embeddings."""

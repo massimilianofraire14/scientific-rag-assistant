@@ -5,7 +5,6 @@ from scientific_rag.embeddings.local_embedder import LocalEmbedder
 from scientific_rag.evaluation.retrieval_metrics import hit_at_k, recall_at_k
 from scientific_rag.retrieval.simple_retriever import SimpleRetriever
 
-
 BENCHMARK_PATH = Path("data/processed/retrieval_benchmark.json")
 EMBEDDINGS_PATH = Path("data/processed/embeddings.npy")
 METADATA_PATH = Path("data/processed/metadata.jsonl")

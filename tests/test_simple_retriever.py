@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 
 import numpy as np
@@ -15,6 +16,28 @@ class DummyEmbedder:
         return vectors[texts[0]]
 
 
+def write_metadata(metadata_path: Path) -> None:
+    rows = [
+        {
+            "paper_id": "paper_a",
+            "page_number": 1,
+            "chunk_id": 0,
+            "text": "physics text",
+        },
+        {
+            "paper_id": "paper_b",
+            "page_number": 2,
+            "chunk_id": 0,
+            "text": "math text",
+        },
+    ]
+
+    metadata_path.write_text(
+        "\n".join(json.dumps(row) for row in rows) + "\n",
+        encoding="utf-8",
+    )
+
+
 def test_retriever_returns_most_similar_chunk(tmp_path: Path) -> None:
     embeddings_path = tmp_path / "embeddings.npy"
     metadata_path = tmp_path / "metadata.jsonl"
@@ -27,12 +50,7 @@ def test_retriever_returns_most_similar_chunk(tmp_path: Path) -> None:
     )
 
     np.save(embeddings_path, embeddings)
-
-    metadata_path.write_text(
-        '{"paper_id": "paper_a", "page_number": 1, "chunk_id": 0, "text": "physics text"}\n'
-        '{"paper_id": "paper_b", "page_number": 2, "chunk_id": 0, "text": "math text"}\n',
-        encoding="utf-8",
-    )
+    write_metadata(metadata_path)
 
     retriever = SimpleRetriever(
         embeddings_path=embeddings_path,
@@ -47,17 +65,14 @@ def test_retriever_returns_most_similar_chunk(tmp_path: Path) -> None:
     assert results[0]["score"] == pytest.approx(1.0)
 
 
-def test_retriever_rejects_mismatched_embeddings_and_metadata(tmp_path: Path) -> None:
+def test_retriever_rejects_mismatched_embeddings_and_metadata(
+    tmp_path: Path,
+) -> None:
     embeddings_path = tmp_path / "embeddings.npy"
     metadata_path = tmp_path / "metadata.jsonl"
 
     np.save(embeddings_path, np.array([[1.0, 0.0]]))
-
-    metadata_path.write_text(
-        '{"paper_id": "paper_a", "page_number": 1, "chunk_id": 0, "text": "physics text"}\n'
-        '{"paper_id": "paper_b", "page_number": 2, "chunk_id": 0, "text": "math text"}\n',
-        encoding="utf-8",
-    )
+    write_metadata(metadata_path)
 
     with pytest.raises(ValueError):
         SimpleRetriever(

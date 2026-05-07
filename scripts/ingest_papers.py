@@ -5,7 +5,6 @@ from scientific_rag.ingestion.pdf_extractor import (
     save_pages_json,
 )
 
-
 RAW_DIR = Path("data/raw")
 PROCESSED_DIR = Path("data/processed")
 

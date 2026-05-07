@@ -1,9 +1,8 @@
-from pathlib import Path
 import argparse
+from pathlib import Path
 
 from scientific_rag.embeddings.local_embedder import LocalEmbedder
 from scientific_rag.retrieval.hybrid_retriever import HybridRetriever
-
 
 EMBEDDINGS_PATH = Path("data/processed/embeddings.npy")
 METADATA_PATH = Path("data/processed/metadata.jsonl")

@@ -1,8 +1,7 @@
-from pathlib import Path
 import argparse
+from pathlib import Path
 
 from scientific_rag.retrieval.bm25_retriever import BM25Retriever
-
 
 METADATA_PATH = Path("data/processed/metadata.jsonl")
 

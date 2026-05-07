@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 
 from scientific_rag.retrieval.bm25_retriever import BM25Retriever, tokenize
@@ -12,9 +13,23 @@ def test_tokenize_removes_stopwords() -> None:
 def test_bm25_retriever_returns_keyword_match(tmp_path: Path) -> None:
     metadata_path = tmp_path / "metadata.jsonl"
 
+    rows = [
+        {
+            "paper_id": "paper_a",
+            "page_number": 1,
+            "chunk_id": 0,
+            "text": "automatic differentiation and neural networks",
+        },
+        {
+            "paper_id": "paper_b",
+            "page_number": 2,
+            "chunk_id": 0,
+            "text": "collocation points enforce physical constraints",
+        },
+    ]
+
     metadata_path.write_text(
-        '{"paper_id": "paper_a", "page_number": 1, "chunk_id": 0, "text": "automatic differentiation and neural networks"}\n'
-        '{"paper_id": "paper_b", "page_number": 2, "chunk_id": 0, "text": "collocation points enforce physical constraints"}\n',
+        "\n".join(json.dumps(row) for row in rows) + "\n",
         encoding="utf-8",
     )
 

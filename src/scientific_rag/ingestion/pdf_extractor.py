@@ -1,8 +1,9 @@
-from pathlib import Path
 import json
 import re
+from pathlib import Path
 
 import fitz  # PyMuPDF
+
 
 def normalize_text(text: str) -> str:
     """Normalize extracted PDF text."""
@@ -25,8 +26,9 @@ def extract_pdf_pages(pdf_path: Path) -> list[dict]:
     """
     if not pdf_path.exists():
         raise FileNotFoundError(f"PDF file not found: {pdf_path}")
-
-    paper_id = pdf_path.stem                     # Use the file name without extension as paper_id
+    
+    # Use the file name without extension as paper_id
+    paper_id = pdf_path.stem                     
     pages: list[dict] = []
 
     with fitz.open(pdf_path) as document:
@@ -45,7 +47,7 @@ def extract_pdf_pages(pdf_path: Path) -> list[dict]:
 
 def save_pages_json(pages: list[dict], output_path: Path) -> None:
     """Save extracted pages to a JSON file."""
-    output_path.parent.mkdir(parents=True, exist_ok=True)  # Ensure output directory exists
+    output_path.parent.mkdir(parents=True, exist_ok=True)  
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(pages, f, ensure_ascii=False, indent=2)
 

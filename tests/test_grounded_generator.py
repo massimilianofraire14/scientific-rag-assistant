@@ -21,7 +21,10 @@ def test_generate_grounded_answer_with_context() -> None:
         {
             "paper_id": "PINN_Raissi",
             "page_number": 3,
-            "text": "PINNs use automatic differentiation to compute derivatives with respect to input coordinates.",
+            "text": (
+                "PINNs use automatic differentiation to compute derivatives"
+                "with respect to input coordinates."
+            ),
         }
     ]
 

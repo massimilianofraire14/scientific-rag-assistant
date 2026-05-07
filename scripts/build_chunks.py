@@ -1,8 +1,7 @@
-from pathlib import Path
 import json
+from pathlib import Path
 
 from scientific_rag.chunking.text_chunker import split_text_into_chunks
-
 
 INPUT_DIR = Path("data/processed")
 OUTPUT_FILE = Path("data/processed/chunks.jsonl")

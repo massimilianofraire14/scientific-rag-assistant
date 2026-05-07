@@ -1,0 +1,63 @@
+{
+  "top_k": 5,
+  "default_retriever": "Dense",
+  "best_hybrid": {
+    "name": "Hybrid alpha=1.0",
+    "recall_at_k": 1.0,
+    "mrr_at_k": 0.8916666666666668
+  },
+  "results": {
+    "Dense": {
+      "recall_at_k": 1.0,
+      "mrr_at_k": 0.8916666666666668
+    },
+    "BM25": {
+      "recall_at_k": 1.0,
+      "mrr_at_k": 0.8208333333333332
+    },
+    "Hybrid alpha=0.0": {
+      "recall_at_k": 1.0,
+      "mrr_at_k": 0.8208333333333332
+    },
+    "Hybrid alpha=0.1": {
+      "recall_at_k": 1.0,
+      "mrr_at_k": 0.8458333333333332
+    },
+    "Hybrid alpha=0.2": {
+      "recall_at_k": 1.0,
+      "mrr_at_k": 0.8291666666666666
+    },
+    "Hybrid alpha=0.3": {
+      "recall_at_k": 1.0,
+      "mrr_at_k": 0.8291666666666666
+    },
+    "Hybrid alpha=0.4": {
+      "recall_at_k": 1.0,
+      "mrr_at_k": 0.8291666666666666
+    },
+    "Hybrid alpha=0.5": {
+      "recall_at_k": 1.0,
+      "mrr_at_k": 0.8416666666666666
+    },
+    "Hybrid alpha=0.6": {
+      "recall_at_k": 1.0,
+      "mrr_at_k": 0.8666666666666666
+    },
+    "Hybrid alpha=0.7": {
+      "recall_at_k": 1.0,
+      "mrr_at_k": 0.8666666666666666
+    },
+    "Hybrid alpha=0.8": {
+      "recall_at_k": 1.0,
+      "mrr_at_k": 0.8583333333333332
+    },
+    "Hybrid alpha=0.9": {
+      "recall_at_k": 1.0,
+      "mrr_at_k": 0.8833333333333332
+    },
+    "Hybrid alpha=1.0": {
+      "recall_at_k": 1.0,
+      "mrr_at_k": 0.8916666666666668
+    }
+  }
+}

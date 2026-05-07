@@ -1,19 +1,25 @@
-from pathlib import Path
 import argparse
+from pathlib import Path
 
 from scientific_rag.embeddings.local_embedder import LocalEmbedder
 from scientific_rag.generation.grounded_generator import generate_grounded_answer
 from scientific_rag.retrieval.simple_retriever import SimpleRetriever
-
 
 EMBEDDINGS_PATH = Path("data/processed/embeddings.npy")
 METADATA_PATH = Path("data/processed/metadata.jsonl")
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Ask questions over scientific papers.")
+    parser = argparse.ArgumentParser(
+        description="Ask questions over scientific papers."
+    )
     parser.add_argument("query", type=str, help="Question or search query")
-    parser.add_argument("--top-k", type=int, default=5, help="Number of chunks to retrieve")
+    parser.add_argument(
+        "--top-k", 
+        type=int, 
+        default=5, 
+        help="Number of chunks to retrieve",
+    )
     parser.add_argument(
         "--show-context",
         action="store_true",

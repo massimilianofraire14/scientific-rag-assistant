@@ -52,7 +52,11 @@ class HybridRetriever:
         dense_scores_norm = min_max_normalize(dense_scores)
         bm25_scores_norm = min_max_normalize(bm25_scores)
 
-        for result, normalized_score in zip(dense_results, dense_scores_norm):
+        for result, normalized_score in zip(
+            dense_results, 
+            dense_scores_norm,
+            strict=True,
+        ):
             key = (
                 result["paper_id"],
                 result["page_number"],
@@ -63,7 +67,11 @@ class HybridRetriever:
             combined[key]["dense_score"] = normalized_score
             combined[key]["bm25_score"] = 0.0
 
-        for result, normalized_score in zip(bm25_results, bm25_scores_norm):
+        for result, normalized_score in zip(
+            bm25_results, 
+            bm25_scores_norm,
+            strict=True,
+        ):
             key = (
                 result["paper_id"],
                 result["page_number"],

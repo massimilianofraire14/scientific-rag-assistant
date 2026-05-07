@@ -1,11 +1,10 @@
-from typing import List
 
 
 def split_text_into_chunks(
     text: str,
     chunk_size: int = 1200,
     overlap: int = 200,
-) -> List[str]:
+) -> list[str]:
     """
     Split text into overlapping chunks without cutting words.
 
@@ -32,7 +31,7 @@ def split_text_into_chunks(
     words = text.split()
 
     # Final list of chunks
-    chunks: List[str] = []
+    chunks: list[str] = []
 
     # Current chunk (list of words) and its approximate length
     current_chunk: list[str] = []

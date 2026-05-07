@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 
 import numpy as np
+
 from scientific_rag.embeddings.local_embedder import LocalEmbedder
 
 CHUNKS_PATH = Path("data/processed/chunks.jsonl")

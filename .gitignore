@@ -1,14 +1,37 @@
+# Virtual environments
 .venv/
-__pycache__/
-*.pyc
+venv/
+env/
 
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Project data
 data/raw/*
 data/processed/*
 !data/raw/.gitkeep
 !data/processed/.gitkeep
 
-reports/*
-!reports/.gitkeep
+# Reports
+# Keep final benchmark reports under version control.
+# Put temporary/local reports in reports/tmp/.
+reports/tmp/
 
-.DS_Store
+# Environment / local config
 .env
+.env.*
+
+# OS / editor files
+.DS_Store
+.vscode/
+.idea/
