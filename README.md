@@ -22,20 +22,26 @@ The current focus is on the retrieval layer of a scientific RAG pipeline: reliab
 
 ## Corpus
 
-The current corpus contains four scientific papers:
+The current corpus contains four scientific papers used for retrieval experiments:
 
-- Physics-Informed Neural Networks
-- Neural Ordinary Differential Equations
-- Attention Is All You Need
-- Fourier Neural Operator
+- M. Raissi, P. Perdikaris, and G. E. Karniadakis, *Physics-informed neural networks: A deep learning framework for solving forward and inverse problems involving nonlinear partial differential equations*, Journal of Computational Physics, 2019.
+- R. T. Q. Chen, Y. Rubanova, J. Bettencourt, and D. Duvenaud, *Neural Ordinary Differential Equations*, NeurIPS, 2018.
+- A. Vaswani et al., *Attention Is All You Need*, NeurIPS, 2017.
+- Z. Li et al., *Fourier Neural Operator for Parametric Partial Differential Equations*, ICLR, 2021.
 
-The raw PDFs are expected in:
+The raw PDFs are expected locally in:
 
     data/raw/
 
 The processed files are written to:
 
     data/processed/
+
+PDF files and processed text artifacts are not committed to the repository, to avoid redistributing copyrighted or third-party content.
+
+## Data Availability
+
+This repository does not include the original PDFs or extracted paper text. Users should download the papers from their official sources and place them in `data/raw/` before running the pipeline.
 
 ## Retrieval Results
 
