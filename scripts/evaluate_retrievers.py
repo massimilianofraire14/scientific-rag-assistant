@@ -98,13 +98,6 @@ def main() -> None:
         metadata_path=METADATA_PATH,
     )
 
-    hybrid_retriever = HybridRetriever(
-        embeddings_path=EMBEDDINGS_PATH,
-        metadata_path=METADATA_PATH,
-        embedder=embedder,
-        alpha=0.3,
-    )
-
     scores = {
         "Dense": evaluate_retriever(
             name="Dense",
@@ -118,13 +111,25 @@ def main() -> None:
             benchmark=benchmark,
             top_k=top_k,
         ),
-        "Hybrid alpha=0.3": evaluate_retriever(
-            name="Hybrid alpha=0.3",
+    }
+
+    alphas = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
+
+    for alpha in alphas:
+        hybrid_retriever = HybridRetriever(
+            embeddings_path=EMBEDDINGS_PATH,
+            metadata_path=METADATA_PATH,
+            embedder=embedder,
+            alpha=alpha,
+        )
+
+        name = f"Hybrid alpha={alpha:.1f}"
+        scores[name] = evaluate_retriever(
+            name=name,
             retriever=hybrid_retriever,
             benchmark=benchmark,
             top_k=top_k,
-        ),
-    }
+        )
 
     print("=" * 80)
     print("Summary")
@@ -133,6 +138,26 @@ def main() -> None:
     for name, (recall, mrr) in scores.items():
         print(f"{name}: Recall@{top_k} = {recall:.3f}, MRR@{top_k} = {mrr:.3f}")
 
+    hybrid_scores = {
+        name: score
+        for name, score in scores.items()
+        if name.startswith("Hybrid alpha=")
+    }
+
+    best_hybrid_name, (best_recall, best_mrr) = max(
+        hybrid_scores.items(),
+        key=lambda item: (item[1][0], item[1][1]),
+    )
+
+    print()
+    print("=" * 80)
+    print("Best hybrid configuration")
+    print("=" * 80)
+    print(
+        f"{best_hybrid_name}: "
+        f"Recall@{top_k} = {best_recall:.3f}, "
+        f"MRR@{top_k} = {best_mrr:.3f}"
+    )
 
 if __name__ == "__main__":
     main()
